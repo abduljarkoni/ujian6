@@ -1,6 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-alert */
-/* eslint-disable react-native/no-inline-styles */
 import { Picker } from '@react-native-picker/picker';
 import Geolocation from 'react-native-geolocation-service';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -25,11 +22,11 @@ const Form = () => {
     const [Latitude, setLatitude] = useState(0);
 
     useEffect(() => {
-        // Untuk menjalanakan fungsi getLocation supaya lokasi kita dapat diambil secara realtime
+        //mendapatkan lokasi kita dapat diambil secara realtime
         getLocation();
     });
 
-    //   Untuk mendapatkan lokasi kiya
+    //   untuk lokasi kiya
     const getLocation = () => {
         Geolocation.getCurrentPosition(
             (position) => {
@@ -49,7 +46,7 @@ const Form = () => {
         setKoordinat(`${Longitude}, ${Latitude}`);
     };
 
-    // Untuk Ambil Gambar Dari File di HP
+    // get file gambar di HP
     const captureImage = (type) => {
         let options = {
             mediaType: type,
@@ -88,7 +85,7 @@ const Form = () => {
         });
     };
 
-    // Untuk Ambil Gambar Dari File di HP
+    // get gambar dari file HP
     const chooseFile = (type) => {
         let options = {
             mediaType: type,
@@ -150,7 +147,7 @@ const Form = () => {
                         console.log('image upload error: ' + error.toString());
                     },
                     () => {
-                        // Untuk mendapatkan url dari file yang kita upload
+                        // Untuk mendapatkan url yg di upload
                         storageRef.getDownloadURL()
                             .then((downloadUrl) => {
                                 console.log('File available at: ' + downloadUrl);

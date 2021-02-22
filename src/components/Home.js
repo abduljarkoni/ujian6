@@ -1,6 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,

@@ -1,6 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-alert */
-/* eslint-disable react-native/no-inline-styles */
 import { Picker } from '@react-native-picker/picker';
 import Geolocation from 'react-native-geolocation-service';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -25,11 +22,11 @@ const Form = (props) => {
     console.log(data);
 
     useEffect(() => {
-        // Untuk menjalanakan fungsi getLocation supaya lokasi kita dapat diambil secara realtime
+        // Untuk mendapatkan lokasi secara realtime
         getLocation();
     });
 
-    //   Untuk mendapatkan lokasi kiya
+    //   mendapatkan lokasi
     const getLocation = () => {
         Geolocation.getCurrentPosition(
             (position) => {
@@ -38,7 +35,7 @@ const Form = (props) => {
                 setLatitude(position.coords.latitude);
             },
             (error) => {
-                // See error code charts below.
+                // agar terlihat erornya jika ada eror
                 console.log(error.code, error.message);
             },
             { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000, forceRequestLocation: true }
@@ -49,7 +46,7 @@ const Form = (props) => {
         setKoordinat(`${Longitude}, ${Latitude}`);
     };
 
-    // Untuk Ambil Gambar Dari File di HP
+    // ambil gambar dari hp
     const captureImage = (type) => {
         let options = {
             mediaType: type,
@@ -87,7 +84,7 @@ const Form = (props) => {
         });
     };
 
-    // Untuk Ambil Gambar Dari File di HP
+    // ambil gambar dari hp
     const chooseFile = (type) => {
         let options = {
             mediaType: type,
@@ -156,7 +153,7 @@ const Form = (props) => {
                     alert(error);
                 });
         }
-        // Jika Gambar Diubah
+        //jika update gambar
         else {
             const storageRef = storage().ref(`images/${fileName}`);
             storageRef.putFile(`${ImageUri}`)
@@ -174,7 +171,7 @@ const Form = (props) => {
                         console.log('image upload error: ' + error.toString());
                     },
                     () => {
-                        // Untuk mendapatkan url dari file yang kita upload
+                        // mendapat dari url yang di upload
                         storageRef.getDownloadURL()
                             .then((downloadUrl) => {
                                 console.log('File available at: ' + downloadUrl);
@@ -190,7 +187,7 @@ const Form = (props) => {
                                     koordinat: koordinat,
                                     update: tanggal,
                                 };
-                                // Menyimpan semua data di firestore
+                                // simpan data di firestore
                                 firestore().collection('users')
                                     .doc(data.id)
                                     .update(update)

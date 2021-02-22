@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-alert */
 import React from 'react';
 import {
     StyleSheet,
@@ -15,18 +13,18 @@ const Detail = (props) => {
     const data = props.route.params.item;
 
     const hapusData = () => {
-        // Hapus data di firestore
+        // delete file di firestore
         firestore()
             .collection('users')
             .doc(data.id)
             .delete()
             .then(() => {
-                // Hapus file di storage
+                // delete file di storage
                 const storageRef = storage().ref(`images/${data.namaFile}`);
                 storageRef.delete()
                     .then(() => {
                         alert('Data Berhasil Dihapus');
-                        // Kembali Ke halaman Utama
+                        // Kembali ke home
                         props.navigation.navigate('Users');
                     });
             });
